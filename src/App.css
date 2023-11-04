@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
 }
-.search-section{
+.search-section {
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,7 @@
   width: 100%;
 }
 
-.search-bar input{
+.search-bar input {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -27,7 +27,7 @@
   width: 80%;
   border: 1px solid grey;
 }
-.search-bar button{
+.search-bar button {
   float: left;
   width: 20%;
   padding: 10px;
@@ -39,8 +39,25 @@
   cursor: pointer;
 }
 
-.search-bar::after{
-  content: "";
+.search-bar::after {
+  content: '';
   clear: both;
   display: table;
+}
+
+.card-list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: start;
+  align-content: start;
+  border: solid red;
+}
+
+.card {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: #1a1a1a solid;
 }
