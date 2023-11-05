@@ -27,7 +27,7 @@ export interface IPeople {
   edited: string;
 }
 
-export interface IFils {
+export interface IFilms {
   title: string;
   episode_id: string;
   opening_crawl: string;

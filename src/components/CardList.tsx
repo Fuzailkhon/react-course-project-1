@@ -1,13 +1,8 @@
-import Card from './Card';
+import Card, {ICard} from './Card';
 
 interface ICardList {
   valuesList: ICard[];
 }
-
-type ICard = {
-  title: string;
-  info: string;
-};
 
 export default function CardList({ valuesList }: ICardList) {
   return (

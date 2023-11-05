@@ -49,6 +49,8 @@
   padding: 0;
   margin: 0;
   display: flex;
+  flex-direction:row;
+  flex-wrap: wrap;
   justify-content: start;
   align-content: start;
   border: solid red;
@@ -56,8 +58,7 @@
 
 .card {
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  border: #1a1a1a solid;
+  padding: 10px;
+  border: red solid;
+  border-radius: 10%;
 }

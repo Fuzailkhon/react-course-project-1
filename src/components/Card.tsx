@@ -1,6 +1,6 @@
-interface ICard {
-  title: string;
-  info: string;
+export interface ICard {
+  title: string | string[];
+  info?: string | string[];
 }
 
 export default function Card({ title, info }: ICard) {

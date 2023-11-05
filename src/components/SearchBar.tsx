@@ -28,7 +28,6 @@ export default function SearchBar({ submitFunc }: ISearchBarProps) {
           <i className="fa fa-search"></i>
         </button>
       </form>
-      <p>{searchVal}</p>
     </>
   );
 }
