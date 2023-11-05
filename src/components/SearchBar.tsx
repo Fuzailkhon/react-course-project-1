@@ -1,11 +1,20 @@
 import { useState } from 'react';
 
-export default function SearchBar() {
+interface ISearchBarProps {
+  submitFunc: (param: string) => void;
+}
+
+export default function SearchBar({ submitFunc }: ISearchBarProps) {
   const [searchVal, setSearchVal] = useState('');
 
-  const submitHandler = (event: React.FormEvent) => {
+  const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (searchVal.trim() === '') return;
+
+    submitFunc(searchVal);
   };
+
   return (
     <>
       <form className="search-bar" onSubmit={submitHandler}>
