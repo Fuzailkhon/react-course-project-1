@@ -9,13 +9,15 @@ export default function CardList() {
   return (
     <div className="card-list">
       {!isLoading ? (
-        resultsList.map((e, i) => {
-          return <Card title={e.name} info={e.created} key={i} />;
-        })
+        !resultsList ? (
+          <p>Sorry Resource Not Found</p>
+        ) : (
+          resultsList.map((e, i) => {
+            return <Card title={e.name} info={e.created} key={i} />;
+          })
+        )
       ) : (
-        <p>
-          Loading ...
-        </p>
+        <p>Loading ...</p>
       )}
     </div>
   );
