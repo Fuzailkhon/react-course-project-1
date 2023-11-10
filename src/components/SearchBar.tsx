@@ -1,29 +1,42 @@
-import { useState } from 'react';
+import { FormEvent, FormEventHandler, useContext, useEffect, useState } from 'react';
+import { ISearchContext, SearchContext } from '../AppContext';
+import useLocalStorage from '../hooks/useLocalStorage';
 
-interface ISearchBarProps {
-  submitFunc: (param: string) => void;
-}
+export default function SearchBar() {
+  const {searchVal, updateSearchValue} = useContext(SearchContext) as ISearchContext
+  const [searchText, setSearchText] = useState('')
+  const [searchList, setSearchList] = useLocalStorage('search', '[]')
 
-export default function SearchBar({ submitFunc }: ISearchBarProps) {
-  const [searchVal, setSearchVal] = useState('');
+  const handleSubmit:FormEventHandler<HTMLFormElement> = (event:FormEvent) =>{
+    event.preventDefault()
+    const searchVal = searchText.trim()
+    if(searchVal === "")return
+    updateSearchValue(searchVal)
+    if (!searchList.includes(searchVal)) {
+      searchList.push(searchVal);
+    }
+    setSearchList(JSON.stringify(searchList))
+  }
 
-  const submitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (searchVal.trim() === '') return;
-
-    submitFunc(searchVal);
-  };
+  useEffect(() => {
+    if(searchVal !== ''){
+      setSearchText(searchVal)
+    }
+  }, [setSearchText, searchVal])
 
   return (
     <>
-      <form className="search-bar" onSubmit={submitHandler}>
+      <form className="search-bar" onSubmit={handleSubmit}>
         <input
-          type="text"
-          onChange={(e) => setSearchVal(e.target.value)}
-          value={searchVal}
+          type="search"
+          onChange={(e) => setSearchText(e.target.value)}
+          value={searchText}
+          list="search-list"
           placeholder="Type to find"
         />
+        <datalist id='search-list'>
+          {searchList && searchList.map((val: string) => <option value={val} key={val}/>)}
+        </datalist>
         <button type="submit">
           <i className="fa fa-search"></i>
         </button>
