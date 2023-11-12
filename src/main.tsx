@@ -8,10 +8,12 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import './index.css';
+import { Details } from './components/Details.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
+      <Route path='details/:id' element={<Details/>}/>
     </Route>
   )
 );
