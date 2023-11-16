@@ -9,11 +9,13 @@ import {
 } from 'react-router-dom';
 import './index.css';
 import { Details } from './components/Details.tsx';
+import NotFoundPage from './NotFoundPage.tsx';
 
-const router = createBrowserRouter(
+export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path='details/:id' element={<Details/>}/>
+      <Route path='*' element={<NotFoundPage/>} />
     </Route>
   )
 );

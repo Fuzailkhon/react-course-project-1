@@ -34,7 +34,7 @@ export default function SearchBar() {
           list="search-list"
           placeholder="Type to find"
         />
-        <datalist id='search-list'>
+        <datalist id='search-list' data-testid="search-list">
           {searchList && searchList.map((val: string) => <option value={val} key={val}/>)}
         </datalist>
         <button type="submit">
