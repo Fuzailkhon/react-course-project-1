@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ISearchContext, SearchContext } from "../AppContext";
 
 export interface ICard {
   title: string | string[];
@@ -9,12 +8,11 @@ export interface ICard {
 }
 
 export default function Card({ title, info, detailNum }: ICard) {
-  const {searchVal, currentPage} = useContext(SearchContext) as ISearchContext
   return (
-    <div className="card">
+    <div className="card" data-testid="card">
       <h2>{title}</h2>
       <p>{info}</p>
-      <Link to={'details/' + detailNum + `/?q=${searchVal}&page=${currentPage}`} >More info</Link>
+      <Link to={'details/' + detailNum + `/?q=`} >More info</Link>
     </div>
   );
 }

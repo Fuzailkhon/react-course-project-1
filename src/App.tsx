@@ -1,19 +1,19 @@
 import './App.css';
 import SearchBar from './components/SearchBar';
-import { AppContext } from './AppContext';
 import CardList from './components/CardList';
+import Counter from './components/Counter';
 
 function App(): React.ReactElement {
-
   return (
-    <AppContext>
+    <>
       <section className="search-section">
-        <SearchBar />
+        {/* <SearchBar /> */}
+        <Counter />
       </section>
       <section className="card-section">
-        <CardList/>
+        {/* <CardList /> */}
       </section>
-    </AppContext>
+    </>
   );
 }
 

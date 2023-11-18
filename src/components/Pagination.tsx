@@ -1,6 +1,3 @@
-import { useContext } from 'react';
-import { ISearchContext, SearchContext } from '../AppContext';
-
 export default function Pagination({
   perPage,
   totalCount,
@@ -9,9 +6,6 @@ export default function Pagination({
   totalCount: number;
 }) {
   const paginationNumbers: number[] = [];
-  const { currentPage, updateCurrentPage } = useContext(
-    SearchContext
-  ) as ISearchContext;
   for (let i = 1; i <= Math.ceil(totalCount / perPage); i++) {
     paginationNumbers.push(i);
   }
@@ -19,11 +13,7 @@ export default function Pagination({
     <div className="pagination-wrapper">
       <div className="pagination">
         {paginationNumbers.map((pageNumber) => (
-          <button
-            className={pageNumber === currentPage ? 'active' : ''}
-            key={pageNumber}
-            onClick={() => updateCurrentPage(pageNumber)}
-          >
+          <button key={pageNumber}>
             {pageNumber}
           </button>
         ))}
