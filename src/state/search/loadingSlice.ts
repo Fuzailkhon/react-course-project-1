@@ -30,13 +30,16 @@ const loadingSlice = createSlice({
       .addMatcher(animeApi.endpoints.animeSearch.matchFulfilled, (state) => {
         state.animeLoading = false;
       })
-      .addMatcher(animeApi.endpoints.animeSearch.matchFulfilled, (state) => {
+      .addMatcher(animeApi.endpoints.animeSearch.matchRejected, (state) => {
         state.animeLoading = false;
       })
       .addMatcher(animeApi.endpoints.getAnimeById.matchPending, (state) => {
         state.detailsLoading = true;
       })
       .addMatcher(animeApi.endpoints.getAnimeById.matchFulfilled, (state) => {
+        state.detailsLoading = false;
+      })
+      .addMatcher(animeApi.endpoints.getAnimeById.matchRejected, (state) => {
         state.detailsLoading = false;
       });
   },

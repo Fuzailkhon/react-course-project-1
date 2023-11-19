@@ -3,6 +3,7 @@ import Card from './Card';
 import { useAppSelector } from '../hooks/redux';
 import { useEffect, useState } from 'react';
 import Pagination from './Pagination';
+import { Outlet } from 'react-router-dom';
 
 export default function CardList() {
   const [skip, setSkip] = useState(true);
@@ -25,19 +26,20 @@ export default function CardList() {
       {isLoading ? (
         <p>Loading ..</p>
       ) : (
-        <div>
-          <div className="card-list">
-            {resultsList &&
-              resultsList.data.map((result) => (
-                <Card
-                  key={result.mal_id}
-                  title={result.title_english}
-                  info={result.rating}
-                  detailId={String(result.mal_id)}
-                />
-              ))}
+        <div className="card-list">
+          {resultsList &&
+            resultsList.data.map((result) => (
+              <Card
+                key={result.mal_id}
+                title={result.title_english}
+                info={result.rating}
+                detailId={String(result.mal_id)}
+              />
+            ))}
+          <div className="pagination-wrapper">
+            <Pagination perPage={5} totalCount={10} />
           </div>
-          <Pagination perPage={5} totalCount={10}/>
+          <Outlet/>
         </div>
       )}
     </>
