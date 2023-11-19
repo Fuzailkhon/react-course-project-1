@@ -1,17 +1,15 @@
 import './App.css';
-import SearchBar from './components/SearchBar';
 import CardList from './components/CardList';
-import Counter from './components/Counter';
+import SearchBar from './components/SearchBar';
 
 function App(): React.ReactElement {
   return (
     <>
       <section className="search-section">
-        {/* <SearchBar /> */}
-        <Counter />
+        <SearchBar />
       </section>
       <section className="card-section">
-        {/* <CardList /> */}
+        <CardList />
       </section>
     </>
   );

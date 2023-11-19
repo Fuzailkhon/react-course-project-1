@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IAnime, IAnimeList } from '../../models';
 
-const animeApi = createApi({
+export const animeApi = createApi({
     reducerPath: 'animeAPI',
     baseQuery: fetchBaseQuery({baseUrl: 'https://api.jikan.moe/v4/anime'}),
     tagTypes: ['animeSearch', 'anime'],
     endpoints: (build) => ({
       animeSearch: build.query<IAnimeList, string>({
         query: (name) => ({
-          url: '/',
+          url: '',
           params: {
             q: name
           }
@@ -21,7 +21,6 @@ const animeApi = createApi({
         }),
         providesTags: () => ['anime']
       })
-    })
+    }),
+    
 });
-
-export default animeApi;

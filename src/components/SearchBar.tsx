@@ -1,15 +1,17 @@
 import { FormEvent, FormEventHandler, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { addSearchVal } from '../state/search/searchSlice';
 
 export default function SearchBar() {
   const [searchText, setSearchText] = useState('')
-  const searchList = useAppSelector(state => state.searchList)
+  const searchList = useAppSelector(state => state.searchList.values)
   const dispatch = useAppDispatch()
 
   const handleSubmit:FormEventHandler<HTMLFormElement> = (event:FormEvent) =>{
     event.preventDefault()
     const searchVal = searchText.trim()
     if(searchVal === "")return
+    dispatch(addSearchVal(searchVal))
   }
 
   return (

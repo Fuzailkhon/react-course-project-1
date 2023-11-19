@@ -1,11 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ISearchListState {
-  value: string[];
+  values: string[];
+  currentValue: string
 }
 
+const searchListState = JSON.parse(localStorage.getItem('search') || 'null');
+
 const initialState: ISearchListState = {
-  value: [],
+  values: searchListState === null ? [] : searchListState,
+  currentValue: ''
 };
 
 const searchListSlice = createSlice({
@@ -13,11 +17,16 @@ const searchListSlice = createSlice({
   initialState,
   reducers: {
     addSearchVal(state, action: PayloadAction<string>) {
-      if (!state.value.includes(action.payload)) {
-        state.value.push(action.payload);
+      console.log(state.values);
+      if (action.payload !== ''){
+        state.currentValue = action.payload
       }
+      if (!state.values.includes(action.payload)) {
+        state.values.push(action.payload);
+      }
+
     },
   },
 });
-export const { addSearchVal } = searchListSlice.actions
+export const { addSearchVal } = searchListSlice.actions;
 export default searchListSlice.reducer;

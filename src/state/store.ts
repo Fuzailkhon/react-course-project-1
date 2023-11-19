@@ -2,19 +2,23 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from './counter/counterSlice'
 import searchSlice from "./search/searchSlice";
 import { listenerMiddleware } from "./search/middleware";
+import {animeApi} from "./api/animeSearch";
+import loadingSlice from "./search/loadingSlice";
 
-const searchListState = JSON.parse(localStorage.getItem('search') || 'null')
+const searchListState = JSON.parse(localStorage.getItem("search") || "null");
 
 export const store = configureStore({
     preloadedState:{
-        searchList: searchListState === null ? [] : searchListState
+        searchList: searchListState === null ? { values: [], currentValue: '' } : {values: searchListState, currentValue: ''}
     },
     reducer: {
         counter: counterReducer,
-        searchList: searchSlice
+        searchList: searchSlice,
+        loadingFlags: loadingSlice,
+        [animeApi.reducerPath]: animeApi.reducer
     },
     middleware: (getDefaultMiddleware) => [
-        ...getDefaultMiddleware(),
+        ...getDefaultMiddleware().concat(animeApi.middleware),
         listenerMiddleware.middleware
     ]
 })
