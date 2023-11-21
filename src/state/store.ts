@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from './counter/counterSlice'
 import searchSlice from "./search/searchSlice";
 import { listenerMiddleware } from "./search/middleware";
 import {animeApi} from "./api/animeSearch";
@@ -12,7 +11,6 @@ export const store = configureStore({
         searchList: searchListState === null ? { values: [], currentValue: '' } : {values: searchListState, currentValue: ''}
     },
     reducer: {
-        counter: counterReducer,
         searchList: searchSlice,
         loadingFlags: loadingSlice,
         [animeApi.reducerPath]: animeApi.reducer
