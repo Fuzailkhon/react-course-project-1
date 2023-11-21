@@ -1,30 +1,45 @@
-import { useContext } from 'react';
+import { animeApi } from '../state/api/animeSearch';
 import Card from './Card';
-import { IResultsListContext, ResultsListContext } from '../AppContext';
+import { useAppSelector } from '../hooks/redux';
+import { useEffect, useState } from 'react';
 import Pagination from './Pagination';
-import { Outlet, useSearchParams } from 'react-router-dom';
 
 export default function CardList() {
-  const { resultsList, isLoading, resultsCount } = useContext(
-    ResultsListContext
-  ) as IResultsListContext;
-  const [searchParams] = useSearchParams();
-  const searchVal = searchParams.get('q');
+  const [skip, setSkip] = useState(true);
+  const currentSearchVal = useAppSelector(
+    (state) => state.searchList.currentValue
+  );
+  const isLoading = useAppSelector((state) => state.loadingFlags.animeLoading);
+  const { data: resultsList } = animeApi.useAnimeSearchQuery(currentSearchVal, {
+    skip,
+    refetchOnMountOrArgChange: true,
+  });
+
+  useEffect(
+    () => (currentSearchVal === '' ? setSkip(true) : setSkip(false)),
+    [currentSearchVal]
+  );
+
   return (
     <>
-      {!searchVal && <p>Please type to search Star Wars API</p>}
-      {!isLoading && !!searchVal && !resultsList.length && <p>Sorry Resource not found</p>}
-      {!!isLoading && <p>Loading ...</p>}
-      {!!resultsList.length && (
-        <div className="card-list">
-          {resultsList.map((e, i) => {
-            const detailsNum = e.url.split('/').at(-2) || ''
-            return <Card title={e.name} info={e.created} key={i} detailNum={detailsNum} />;
-          })}
-          <Pagination perPage={resultsList.length} totalCount={resultsCount} />
+      {isLoading ? (
+        <p>Loading ..</p>
+      ) : (
+        <div>
+          <div className="card-list">
+            {resultsList &&
+              resultsList.data.map((result) => (
+                <Card
+                  key={result.mal_id}
+                  title={result.title_english}
+                  info={result.rating}
+                  detailId={String(result.mal_id)}
+                />
+              ))}
+          </div>
+          <Pagination perPage={5} totalCount={10}/>
         </div>
       )}
-      <Outlet/>
     </>
   );
 }
