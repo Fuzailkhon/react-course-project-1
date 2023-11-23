@@ -35,7 +35,7 @@ export default function Layout({ children, home }: ILayoutProps) {
           <>
             <Image
               priority
-              src="images/profile.jpg"
+              src="/images/profile.jpg"
               height={144}
               width={144}
               alt="Profile Image"
@@ -53,12 +53,12 @@ export default function Layout({ children, home }: ILayoutProps) {
                 height={108}
                 width={108}
               />
-              <h2 className={utilStyles.headingLg}>
-                <Link href="/" className={utilStyles.colorInherit}>
-                  {name}
-                </Link>
-              </h2>
             </Link>
+            <h2 className={utilStyles.headingLg}>
+              <Link href="/" className={utilStyles.colorInherit}>
+                {name}
+              </Link>
+            </h2>
           </>
         )}
       </header>
@@ -68,8 +68,6 @@ export default function Layout({ children, home }: ILayoutProps) {
           <Link href="/">← Back to Home</Link>
         </div>
       )}
-
-      {children}
     </div>
   );
 }

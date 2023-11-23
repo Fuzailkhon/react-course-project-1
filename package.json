@@ -11,9 +11,13 @@
     "test": "vitest"
   },
   "dependencies": {
+    "date-fns": "^2.30.0",
+    "gray-matter": "^4.0.3",
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@types/css-modules": "^1.0.5",
