@@ -26,11 +26,11 @@ export const animeSlice = createSlice({
         state.anime = payload.data;
         state.pagination = payload.pagination;
       }
-    );
-    builder.addMatcher(
+    ).addMatcher(
       animeApi.endpoints.getAnimeById.matchFulfilled,
       (state, { payload }) => {
-        state.animeDetails = payload
+        console.log(payload)
+        state.animeDetails = {...payload}
       }
     )
   },

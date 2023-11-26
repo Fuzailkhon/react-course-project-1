@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IAnime, IAnimeList } from '@/types/anime';
-import { truncate } from 'fs';
 import { HYDRATE } from 'next-redux-wrapper';
 
 export const animeApi = createApi({

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 export default function Home() {
   return (
-    <Layout details={false}>
+    <Layout>
       <SearchSection />
       <ResultsSection />
     </Layout>

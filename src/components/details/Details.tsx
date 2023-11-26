@@ -9,17 +9,7 @@ import { animeApi } from '@/store/api/animeApi';
 export function Details({id}: {id:string}) {
   const router = useRouter();
   const details = useAppSelector((state) => state.anime.animeDetails);
-  const [skip, setSkip] = useState(false);
-  const currentSearch = useAppSelector(state => state.searchList.currentValue)
-  const searchVal = useAppSelector((state) => state.searchList.currentValue);
-  const { data } = animeApi.useGetAnimeByIdQuery(id, { skip });
-
-  useEffect(() => {
-    if (id) {
-      setSkip(false);
-    }
-  }, [id]);
-
+  
   return (
     <div className={detailStyles.modal} onClick={() => router.back()}>
       <button onClick={() => router.back()}>
