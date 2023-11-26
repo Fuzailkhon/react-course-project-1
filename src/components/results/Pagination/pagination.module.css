@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  align-self: flex-end;
+  border: 1px solid #fff;
+  justify-content: space-between;
+  width: fit-content;
+  margin-left: auto;
+  padding: 10px;
+  background: gray;
+  opacity: 95%;
+}
+
+.pagination button {
+  padding: 10px;
+}
+
+.paginationLimit{
+  width: 50px;
+}
+
+.active {
+  background: black;
+  color: #fff;
+  border: 1px solid #fff;
+}

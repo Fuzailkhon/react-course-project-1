@@ -1,0 +1,16 @@
+.cardList {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  padding-top: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border: solid red;
+}
+
+@media all and (max-width: 500px) {
+  .cardList {
+    flex-direction: column;
+  }
+}
